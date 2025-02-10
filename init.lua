@@ -26,3 +26,21 @@ require("lazy").setup({
 })
 
 vim.wo.number = true
+
+-- Auto-refresh on external file changes
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
+  callback = function() vim.cmd("checktime") end,
+})
+
+-- Auto-refresh the current buffer after saving all buffers
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    if vim.bo.modifiable then
+      vim.cmd("silent! e")
+    end
+  end,
+})
+
+vim.keymap.set("n", "<leader>e", function()
+  vim.diagnostic.open_float(0, { scope = "line" })
+end, { noremap = true, silent = true })

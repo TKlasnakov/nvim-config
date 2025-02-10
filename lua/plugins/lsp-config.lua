@@ -16,6 +16,7 @@ return {
 					"lua_ls",
 					"angularls",
 					"ts_ls",
+					"solidity_ls_nomicfoundation"
 				}
 			})
 		end,
@@ -36,6 +37,8 @@ return {
 				}
 			})
 			lspconfig.ts_ls.setup({})
+			lspconfig.solidity_ls_nomicfoundation.setup({})
+
 			vim.keymap.set("n", "<leader>k", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
